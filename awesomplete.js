@@ -410,12 +410,20 @@ $.siblingIndex = function (el) {
 };
 
 // Initialization
-
+var initialized = [];
 function init() {
-	$$("input.awesomplete").forEach(function (input) {
-		new _(input);
-	});
+    $$("input.awesomplete").forEach(function (input) {
+        if( ~initialized.indexOf(input) ){ return; }
+        new _(input);
+        initialized.push(input)
+    });
 }
+
+// function init() {
+// 	$$("input.awesomplete").forEach(function (input) {
+// 		new _(input);
+// 	});
+// }
 
 // Are we in a browser? Check for Document constructor
 if (typeof Document !== "undefined") {
